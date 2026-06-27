@@ -28,7 +28,10 @@ public class ClickMove : MonoBehaviour
                 isMoving = true;
             }
         }
+    }
 
+    void FixedUpdate()
+    {
         Vector3 clickDirection = new Vector3(clickTarget.x, transform.position.y, clickTarget.z);
 
         if (isMoving && Vector3.Distance(transform.position, clickDirection) > 0.1f)
