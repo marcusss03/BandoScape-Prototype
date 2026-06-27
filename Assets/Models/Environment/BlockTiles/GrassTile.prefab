@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2112981495921543343}
   - component: {fileID: 2197016163298236117}
   - component: {fileID: 6952462506495627904}
+  - component: {fileID: 1006601422027178504}
   m_Layer: 0
   m_Name: Chunk_Grass_001
   m_TagString: Untagged
@@ -91,6 +92,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1006601422027178504
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947238027691523496}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1825472535167645492, guid: 0c80db588ddbd9c4ca3523ec3efff897, type: 3}
 --- !u!1 &4723798221080345097
 GameObject:
   m_ObjectHideFlags: 0

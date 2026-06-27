@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9880cb2c65ce6d84e8f23a193d9ec3ea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - grassPrefab: {fileID: 4723798221080345097, guid: 8dfe2f90a7acf8b42b911a4e13fc830c, type: 3}
+  - roadPrefab: {instanceID: 0}
+  - pavementPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
