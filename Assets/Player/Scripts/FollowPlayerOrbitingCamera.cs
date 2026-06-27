@@ -19,19 +19,28 @@ public class FollowPlayerOrbitingCamera : MonoBehaviour
     private float yaw = 45f;
     private float size = 2f;
 
+    private bool isInitialized = false;
+
     void Awake()
     {
         camera = GetComponent<Camera>();
         camera.orthographic = true;
     }
 
-    private void Start()
+    public void Init(Transform? assignedTarget = null)
     {
+        target = assignedTarget ?? target;
         transform.position = new Vector3(target.position.x + initalOffset.x, target.position.y + initalOffset.y, target.position.z + initalOffset.z);
+        isInitialized = true;
     }
 
     private void Update()
     {
+        if(!isInitialized)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(2))
         {
             yaw += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
@@ -47,6 +56,11 @@ public class FollowPlayerOrbitingCamera : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!isInitialized)
+        {
+            return;
+        }
+
         Quaternion rotation = Quaternion.Euler(0f, yaw, 0f);
 
         transform.position = Vector3.Lerp(
