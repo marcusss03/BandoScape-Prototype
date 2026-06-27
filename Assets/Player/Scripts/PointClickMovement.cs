@@ -19,24 +19,26 @@ public class ClickMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;                                                
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);   
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
             {
-                clickTarget = new Vector3(hit.point.x, 0, hit.point.z);    
-                isMoving = true;                                          
+                clickTarget = new Vector3(hit.point.x, 0, hit.point.z);
+                isMoving = true;
             }
         }
 
-        if (isMoving && Vector3.Distance(transform.position, clickTarget) > 0.1f)
+        Vector3 clickDirection = new Vector3(clickTarget.x, transform.position.y, clickTarget.z);
+
+        if (isMoving && Vector3.Distance(transform.position, clickDirection) > 0.1f)
         {
-            transform.LookAt(clickTarget);                                          
-            transform.position += transform.forward * Time.deltaTime * speed;       
+            transform.LookAt(clickDirection);
+            transform.position += transform.forward * Time.deltaTime * speed;
         }
         else
         {
-            isMoving = false;                                                       
+            isMoving = false;
         }
     }
 }
