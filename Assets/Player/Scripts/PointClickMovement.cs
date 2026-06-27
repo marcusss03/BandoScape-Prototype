@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClickMove : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 1;
     private Vector3 clickTarget;
     private bool isMoving = false;
 

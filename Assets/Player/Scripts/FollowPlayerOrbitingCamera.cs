@@ -7,13 +7,17 @@ public class FollowPlayerOrbitingCamera : MonoBehaviour
     public Transform target;
 
     [Header("Offset")]
-    public Vector3 initalOffset = Vector3.zero;
+    public Vector3 initalOffset = new Vector3(2, 2, 2);
 
     [Header("Rotation")]
-    public float rotationSpeed = 180f;
+    public float rotationSpeed = 90f;
+
+    [Header("Zoom")]
+    public float zoomSpeed = 5f;
 
     private Camera camera;
     private float yaw = 45f;
+    private float size = 2f;
 
     void Awake()
     {
@@ -37,24 +41,26 @@ public class FollowPlayerOrbitingCamera : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
             yaw -= rotationSpeed * Time.deltaTime;
+
+        size -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed * Time.deltaTime;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        Quaternion rotation = Quaternion.Euler(transform.rotation.x, yaw, 0f);
+        Quaternion rotation = Quaternion.Euler(0f, yaw, 0f);
 
         transform.position = Vector3.Lerp(
             transform.position,
             target.position + rotation * initalOffset,
             2f * Time.deltaTime);
 
-        transform.LookAt(target);
-
         Quaternion desiredRotation = Quaternion.LookRotation(target.position - transform.position);
 
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             desiredRotation,
-            2f * Time.deltaTime);
+            360f * Time.deltaTime);
+
+        camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, size, 2f * Time.deltaTime);
     }
 }
