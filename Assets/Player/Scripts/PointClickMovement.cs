@@ -8,6 +8,13 @@ public class ClickMove : MonoBehaviour
     private Vector3 clickTarget;
     private bool isMoving = false;
 
+    private Transform parentComponentTransform;
+
+    void Awake()
+    {
+        parentComponentTransform = transform.parent;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +39,13 @@ public class ClickMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 clickDirection = new Vector3(clickTarget.x, transform.position.y, clickTarget.z);
+        Vector3 clickDirection = new Vector3(clickTarget.x, parentComponentTransform.position.y, clickTarget.z);
 
-        if (isMoving && Vector3.Distance(transform.position, clickDirection) > 0.1f)
+        if (isMoving && Vector3.Distance(parentComponentTransform.position, clickDirection) > 0.1f)
         {
-            transform.LookAt(clickDirection);
-            transform.position += transform.forward * Time.deltaTime * speed;
+
+            parentComponentTransform.LookAt(clickDirection);
+            parentComponentTransform.position += transform.forward * Time.deltaTime * speed;
         }
         else
         {
